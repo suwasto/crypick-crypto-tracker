@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.compose.compose
 
 plugins {
@@ -7,6 +8,7 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.kotlinX.serialization.plugin)
     alias(libs.plugins.sqlDelight.plugin)
+    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -82,6 +84,25 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+    }
+}
+
+buildkonfig {
+    packageName = "app.id.crypick"
+
+    defaultConfigs {
+        buildConfigField(
+            com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
+            "NEWS_API_KEY", (gradleLocalProperties(rootDir).getProperty("news.api.key") ?: "")
+        )
+        buildConfigField(
+            com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
+            "NEWS_BASE_URL", (gradleLocalProperties(rootDir).getProperty("news.base.url") ?: "")
+        )
+        buildConfigField(
+            com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
+            "COINGECKO_BASE_URL", (gradleLocalProperties(rootDir).getProperty("coingecko.base.url") ?: "")
+        )
     }
 }
 

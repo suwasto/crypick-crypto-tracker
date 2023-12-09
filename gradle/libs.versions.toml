@@ -1,5 +1,5 @@
 [versions]
-agp = "8.1.4"
+agp = "8.2.0"
 kotlin = "1.9.21"
 compose = "1.5.11"
 compose-resources = "1.5.11"
@@ -7,10 +7,8 @@ compose-compiler = "1.5.4"
 androidx-activityCompose = "1.8.1"
 koinCore = "3.5.0"
 koinAndroid = "3.5.0"
-gradle = "8.1.4"
 sqlDelight = "2.0.0"
 voyager = "1.0.0-rc10"
-componentsResources = "1.5.11"
 multiplatformSettings = "1.1.1"
 koin-compose = "1.1.0"
 core = "1.12.0"
@@ -23,8 +21,8 @@ material3WindowSizeClassMultiplatform = "0.3.1"
 napier = "2.6.1"
 core-library-desugaring = "2.0.4"
 toast4j = "0.2.0"
-compose-activity = "1.8.1"
 spotless = "5.17.1"
+buildkonfig = "0.15.1"
 annotationJvm = "1.7.0"
 ktor = "2.3.4"
 
@@ -82,3 +80,4 @@ jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinX-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqlDelight-plugin = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }
