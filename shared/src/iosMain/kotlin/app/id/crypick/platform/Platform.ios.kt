@@ -1,4 +1,4 @@
-package app.id.crypick
+package app.id.crypick.platform
 
 import platform.UIKit.UIDevice
 

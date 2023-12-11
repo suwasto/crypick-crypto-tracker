@@ -41,4 +41,6 @@ android {
 dependencies {
     implementation(projects.shared)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.koin.android)
+    coreLibraryDesugaring(libs.core.library.desugaring)
 }
