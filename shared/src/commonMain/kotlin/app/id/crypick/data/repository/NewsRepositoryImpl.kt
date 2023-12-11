@@ -11,12 +11,12 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 class NewsRepositoryImpl(
     private val httpClient: HttpClient,
-    private val dateTimeKtx: DateTimeKtx
 ) : NewsRepository {
-
     override fun fetchNews(): Flow<NetworkResultState<NewsDto>> {
         return flow {
             emit(
@@ -25,8 +25,6 @@ class NewsRepositoryImpl(
                         urlString = "everything",
                         block = {
                             parameter("q", "crypto")
-                            parameter("from", dateTimeKtx.getCurrentDate())
-                            parameter("to", dateTimeKtx.getCurrentDate())
                             parameter("sortBy", "popularity")
                         }
                     ).body<NewsDto>()
