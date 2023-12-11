@@ -1,5 +1,4 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import org.jetbrains.compose.compose
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -108,6 +107,8 @@ buildkonfig {
 
 android {
     namespace = "app.id.crypick"
+    sourceSets["main"].res.srcDirs("src/commonMain/resources")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
     compileSdk = 34
     defaultConfig {
         minSdk = 24

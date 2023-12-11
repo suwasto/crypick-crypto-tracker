@@ -1,4 +1,4 @@
-package app.id.crypick.data.repository.news
+package app.id.crypick.data.repository
 
 import app.id.crypick.data.network.dto.NewsDto
 import app.id.crypick.data.network.utils.NetworkResultState
