@@ -14,5 +14,5 @@ fun initKoin(
 }
 
 // called by ios
-fun KoinApplication.Companion.start(): KoinApplication = initKoin { }
+fun KoinApplication.Companion.start(): KoinApplication = initKoin {}
 

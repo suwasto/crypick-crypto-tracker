@@ -17,28 +17,28 @@ data class NewsDto(
 @Serializable
 data class SourceDto(
     @SerialName("id")
-    val id: String,
+    val id: String?,
     @SerialName("name")
-    val name: String
+    val name: String?
 )
 
 
 @Serializable
 data class ArticleDto(
     @SerialName("author")
-    val author: String,
+    val author: String?,
     @SerialName("content")
-    val content: String,
+    val content: String?,
     @SerialName("description")
-    val description: String,
+    val description: String?,
     @SerialName("publishedAt")
-    val publishedAt: String,
+    val publishedAt: String?,
     @SerialName("source")
-    val source: SourceDto,
+    val source: SourceDto?,
     @SerialName("title")
-    val title: String,
+    val title: String?,
     @SerialName("url")
-    val url: String,
+    val url: String?,
     @SerialName("urlToImage")
-    val urlToImage: String
+    val urlToImage: String?
 )
