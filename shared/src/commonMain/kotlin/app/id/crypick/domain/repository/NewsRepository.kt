@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
 
-    fun fetchNews(): Flow<NetworkResultState<NewsDto>>
+    suspend fun fetchNews(): Flow<NetworkResultState<NewsDto>>
 
 }

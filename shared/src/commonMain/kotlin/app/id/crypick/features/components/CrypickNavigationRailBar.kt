@@ -6,13 +6,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import io.ktor.websocket.Frame
 
 @Composable
 fun CrypickNavigationRailBar(
@@ -32,12 +32,12 @@ fun CrypickNavigationRailBar(
                 icon = {
                     item.options.icon?.let {
                         Icon(
-                            painter = it,
+                            painter = if (isSelected) FilledIcon(item) else it,
                             contentDescription = item.options.title,
                         )
                     }
                 },
-                label = { Frame.Text(text = item.options.title) },
+                label = { Text(text = item.options.title) },
                 alwaysShowLabel = true,
                 selected = tabNavigator.current == item,
                 onClick = { tabNavigator.current = item },
