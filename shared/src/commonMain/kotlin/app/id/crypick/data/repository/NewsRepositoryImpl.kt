@@ -30,4 +30,16 @@ class NewsRepositoryImpl(
             response
         })
     }
+
+    override suspend fun fetchNewsHeadlines(): Flow<NetworkResultState<NewsDto>> {
+        return flowOf(safeApiCall {
+            val response = httpClient.get(
+                urlString = "top-headlines",
+                block = {
+                    parameter("q", "crypto")
+                }
+            ).body<NewsDto>()
+            response
+        })
+    }
 }

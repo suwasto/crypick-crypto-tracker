@@ -8,4 +8,6 @@ interface NewsRepository {
 
     suspend fun fetchNews(): Flow<NetworkResultState<NewsDto>>
 
+    suspend fun fetchNewsHeadlines(): Flow<NetworkResultState<NewsDto>>
+
 }
