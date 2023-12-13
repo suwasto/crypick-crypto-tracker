@@ -68,6 +68,7 @@ ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-java = { module = "io.ktor:ktor-client-java", version.ref = "ktor" }
 ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+compose-material3-adaptive = { module = "androidx.compose.material3:material3-adaptive" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

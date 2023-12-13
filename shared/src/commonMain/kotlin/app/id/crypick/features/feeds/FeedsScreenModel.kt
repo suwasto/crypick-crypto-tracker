@@ -17,27 +17,23 @@ class FeedsScreenModel(
     private val _uiState = MutableFeedsUiState()
     val uiState: FeedsUiState = _uiState
 
-    init {
-        fetchNews()
-        fetchHeadlines()
-    }
-
     fun fetchNews() {
         _uiState.newsState = _uiState.newsState.copy(loading = true)
         screenModelScope.launch {
             newsRepository.fetchNews().collectLatest { newsResult ->
                 newsResult.onSuccess {
                     _uiState.newsState = _uiState.newsState.copy(
+                        loading = false,
                         data = it.toString(),
                         errorMsg = null
                     )
                 }.onFailure {
                     _uiState.newsState = _uiState.newsState.copy(
+                        loading = false,
                         errorMsg = it.message
                     )
                 }
             }
-            _uiState.newsState = _uiState.newsState.copy(loading = false)
         }
     }
 
