@@ -35,7 +35,7 @@ fun ShimmerBrush(targetValue: Float = 1500f): Brush {
             animation = tween(
                 durationMillis = 1000,
                 easing = LinearEasing,
-            ), repeatMode = RepeatMode.Reverse
+            ), repeatMode = RepeatMode.Restart
         )
     )
     return Brush.linearGradient(
