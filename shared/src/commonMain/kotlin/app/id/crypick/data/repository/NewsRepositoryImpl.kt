@@ -1,8 +1,10 @@
 package app.id.crypick.data.repository
 
+import app.id.crypick.data.mapper.toDomain
 import app.id.crypick.data.network.dto.NewsDto
 import app.id.crypick.data.network.utils.NetworkResultState
 import app.id.crypick.data.network.utils.safeApiCall
+import app.id.crypick.domain.model.News
 import app.id.crypick.domain.repository.NewsRepository
 import app.id.crypick.utils.DateTimeKtx
 import io.ktor.client.HttpClient
@@ -17,8 +19,9 @@ import kotlinx.serialization.Serializable
 
 class NewsRepositoryImpl(
     private val httpClient: HttpClient,
+    private val dateTimeKtx: DateTimeKtx
 ) : NewsRepository {
-    override suspend fun fetchNews(): Flow<NetworkResultState<NewsDto>> {
+    override suspend fun fetchNews(): Flow<NetworkResultState<List<News>>> {
         return flowOf(safeApiCall {
             val response = httpClient.get(
                 urlString = "everything",
@@ -27,11 +30,11 @@ class NewsRepositoryImpl(
                     parameter("sortBy", "popularity")
                 }
             ).body<NewsDto>()
-            response
+            response.toDomain(dateTimeKtx)
         })
     }
 
-    override suspend fun fetchNewsHeadlines(): Flow<NetworkResultState<NewsDto>> {
+    override suspend fun fetchNewsHeadlines(): Flow<NetworkResultState<List<News>>> {
         return flowOf(safeApiCall {
             val response = httpClient.get(
                 urlString = "top-headlines",
@@ -39,7 +42,7 @@ class NewsRepositoryImpl(
                     parameter("q", "crypto")
                 }
             ).body<NewsDto>()
-            response
+            response.toDomain(dateTimeKtx)
         })
     }
 }

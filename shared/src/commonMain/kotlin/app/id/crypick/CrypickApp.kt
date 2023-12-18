@@ -37,6 +37,7 @@ fun CrypickApp(
 }
 
 val LocalAppNavigator: ProvidableCompositionLocal<Navigator?> = staticCompositionLocalOf { null }
+
 @Composable
 fun ProvideAppNavigator(navigator: Navigator, content: @Composable () -> Unit) {
     CompositionLocalProvider(LocalAppNavigator provides navigator) {

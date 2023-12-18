@@ -9,14 +9,14 @@ suspend fun <T : Any?> safeApiCall(apiCall: suspend () -> T): NetworkResultState
     return try {
         NetworkResultState.Success(apiCall.invoke())
     } catch (e: RedirectResponseException) {
-        NetworkResultState.Failure(exception = e)
+        NetworkResultState.Failure(exception = Exception("Something went wrong"))
     } catch (e: ClientRequestException) {
-        NetworkResultState.Failure(exception = e)
+        NetworkResultState.Failure(exception = Exception("Something went wrong"))
     } catch (e: ServerResponseException) {
-        NetworkResultState.Failure(exception = e)
+        NetworkResultState.Failure(exception = Exception("Something went wrong"))
     } catch (e: UnresolvedAddressException) {
-        NetworkResultState.Failure(exception = e)
+        NetworkResultState.Failure(exception = Exception("Something went wrong"))
     } catch (e: Exception) {
-        NetworkResultState.Failure(exception = e)
+        NetworkResultState.Failure(exception = Exception("Something went wrong"))
     }
 }

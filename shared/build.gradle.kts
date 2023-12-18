@@ -73,9 +73,12 @@ kotlin {
             implementation(libs.ktor.contentNegotiation)
             implementation(libs.ktor.json)
             implementation(libs.ktor.logging)
+
+            implementation(libs.qdsfdhvh.imageloader)
         }
         androidMain.dependencies {
             implementation(libs.ktor.android)
+            implementation(libs.androidx.activity.compose)
         }
         iosMain.dependencies {
             implementation(libs.ktor.darwin)

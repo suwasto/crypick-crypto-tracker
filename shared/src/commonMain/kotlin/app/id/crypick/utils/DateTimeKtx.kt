@@ -1,5 +1,6 @@
 package app.id.crypick.utils
 
+import androidx.compose.ui.text.capitalize
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
@@ -24,12 +25,12 @@ class DateTimeKtx {
     val localDateTime = iso8601TimestampToLocalDateTime(iso8601Timestamp)
     val date = localDateTime.date
     val day = date.dayOfMonth
-    val month = date.monthNumber
+    val month = date.month.name.lowercase().replaceFirstChar { it.uppercase() }
     val year = date.year
     
     // This format should be generated based on an argument.
     // For now, we're hardcoding this to the 'dd.MM.yyyy' format.
-    return "${year}-${month.zeroPrefixed(2)}-${day.zeroPrefixed(2)}"
+    return "${day.zeroPrefixed(2)} $month $year"
   }
   
   private fun iso8601TimestampToLocalDateTime(timestamp: String): LocalDateTime {
