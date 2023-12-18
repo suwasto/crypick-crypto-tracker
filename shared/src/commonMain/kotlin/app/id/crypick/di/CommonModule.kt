@@ -33,6 +33,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
     single<NewsRepository> {
         NewsRepositoryImpl(
             httpClient = get(named("news")),
+            dateTimeKtx = get()
         )
     }
     single<SettingRepository> {

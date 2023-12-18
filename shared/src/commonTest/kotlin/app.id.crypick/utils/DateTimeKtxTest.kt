@@ -11,14 +11,14 @@ class DateTimeKtxTest {
     fun `getFormattedDate with +0000`() {
         val input = "2022-06-17T12:34:56+00:00"
         val actual = dateTimeKtx.getFormattedDate(input)
-        assertEquals("2022-06-17", actual)
+        assertEquals("17 June 2022", actual)
     }
 
     @Test
     fun `getFormattedDate with Z`() {
         val input = "2022-12-08T12:34:56Z"
         val actual = dateTimeKtx.getFormattedDate(input)
-        assertEquals("2022-12-08", actual)
+        assertEquals("08 December 2022", actual)
     }
 
 }

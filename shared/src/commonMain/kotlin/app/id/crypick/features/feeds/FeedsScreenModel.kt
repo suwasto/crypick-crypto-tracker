@@ -24,7 +24,7 @@ class FeedsScreenModel(
                 newsResult.onSuccess {
                     _uiState.newsState = _uiState.newsState.copy(
                         loading = false,
-                        data = it.toString(),
+                        data = it,
                         errorMsg = null
                     )
                 }.onFailure {
@@ -38,21 +38,21 @@ class FeedsScreenModel(
     }
 
     fun fetchHeadlines() {
-        _uiState.newsState = _uiState.headlinesState.copy(loading = true)
+        _uiState.headlinesState = _uiState.headlinesState.copy(loading = true)
         screenModelScope.launch {
-            newsRepository.fetchNews().collectLatest { newsResult ->
+            newsRepository.fetchNewsHeadlines().collectLatest { newsResult ->
                 newsResult.onSuccess {
-                    _uiState.newsState = _uiState.headlinesState.copy(
-                        data = it.toString(),
+                    _uiState.headlinesState = _uiState.headlinesState.copy(
+                        data = it,
                         errorMsg = null
                     )
                 }.onFailure {
-                    _uiState.newsState = _uiState.headlinesState.copy(
+                    _uiState.headlinesState = _uiState.headlinesState.copy(
                         errorMsg = it.message
                     )
                 }
             }
-            _uiState.newsState = _uiState.headlinesState.copy(loading = false)
+            _uiState.headlinesState = _uiState.headlinesState.copy(loading = false)
         }
     }
 
