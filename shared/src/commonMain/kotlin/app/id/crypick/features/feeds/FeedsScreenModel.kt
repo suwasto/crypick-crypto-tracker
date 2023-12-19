@@ -17,6 +17,11 @@ class FeedsScreenModel(
     private val _uiState = MutableFeedsUiState()
     val uiState: FeedsUiState = _uiState
 
+    init {
+        fetchNews()
+        fetchHeadlines()
+    }
+
     fun fetchNews() {
         _uiState.newsState = _uiState.newsState.copy(loading = true)
         screenModelScope.launch {

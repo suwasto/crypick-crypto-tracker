@@ -29,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import app.id.crypick.domain.model.News
 import app.id.crypick.features.components.ShimmerContainer
 import app.id.crypick.utils.UiState
@@ -119,18 +120,20 @@ fun FeedsHeadlineItem(modifier: Modifier = Modifier, news: News) {
             ) {
                 Text(
                     text = news.title,
-                    style = MaterialTheme.typography.headlineSmall,
                     color = Color.White,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    fontSize = 16.sp
                 )
-                Text(
-                    text = news.description,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
-                )
+                if (news.description.isNotEmpty()) {
+                    Text(
+                        text = news.description,
+                        color = Color.White,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        fontSize = 14.sp
+                    )
+                }
             }
         }
     }
