@@ -43,10 +43,6 @@ import org.koin.compose.koinInject
 fun FeedsScreen(
     screenModel: FeedsScreenModel = koinInject()
 ) {
-//    LaunchedEffect(key1 = screenModel) {
-//        screenModel.fetchHeadlines()
-//        screenModel.fetchNews()
-//    }
     FeedsScreenStateless(screenModel.uiState)
 }
 
