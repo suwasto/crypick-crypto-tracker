@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -31,6 +32,7 @@ import app.id.crypick.features.components.TwoPanelScaffold
 import app.id.crypick.features.components.TwoPanelScaffoldAnimationSpec
 import app.id.crypick.features.feeds.component.FeedsHeadline
 import app.id.crypick.features.feeds.component.NewsItem
+import app.id.crypick.features.feeds.component.NewsLoading
 import app.id.crypick.features.feeds.detail.FeedsDetail
 import app.id.crypick.features.feeds.detail.FeedsDetailScreen
 import app.id.crypick.features.feeds.state.FeedsUiState
@@ -41,9 +43,10 @@ import org.koin.compose.koinInject
 fun FeedsScreen(
     screenModel: FeedsScreenModel = koinInject()
 ) {
-    LaunchedEffect(key1 = screenModel) {
-            screenModel.fetchHeadlines()
-    }
+//    LaunchedEffect(key1 = screenModel) {
+//        screenModel.fetchHeadlines()
+//        screenModel.fetchNews()
+//    }
     FeedsScreenStateless(screenModel.uiState)
 }
 
@@ -103,7 +106,6 @@ private fun Feeds(
     uiState: FeedsUiState,
     onSelectedNews: (News) -> Unit
 ) {
-    val dummyNews = News("", "Tes tes satu dua", "", "", "", "", "")
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -128,10 +130,18 @@ private fun Feeds(
                 fontWeight = FontWeight.Bold
             )
         }
-        items(5) {
-            NewsItem(dummyNews, onSelectedNews = {
-                onSelectedNews(dummyNews)
-            })
+        if (uiState.newsState.loading) {
+            items(5) {
+                NewsLoading()
+            }
+        } else {
+            uiState.newsState.data?.let {
+                items(it) { news ->
+                    NewsItem(news, onSelectedNews = { selectedNews ->
+                        onSelectedNews(selectedNews)
+                    })
+                }
+            }
         }
     }
 }
